@@ -1,0 +1,190 @@
+class Student:
+    def __init__(self, name):
+        self.name = name
+        self.grades = []
+
+    def add_grade(self, grade):
+        self.grades.append(grade)
+
+    def calculate_average_grade(self):
+        if not self.grades:
+            return 0
+        return sum(self.grades) / len(self.grades)
+
+
+class Class:
+    def __init__(self):
+        self.students = []
+
+    def add_student(self, student):
+        self.students.append(student)
+
+    def add_grade_for_student(self, student_name, grade):
+        for student in self.students:
+            if student.name == student_name:
+                student.add_grade(grade)
+                return
+        print(f"Uczeń o nazwie {student_name} nie został znaleziony.")
+
+    def calculate_average_grade_for_student(self, student_name):
+        for student in self.students:
+            if student.name == student_name:
+                average_grade = student.calculate_average_grade()
+                print(f"Średnia ocena dla ucznia {student_name}: {average_grade}")
+                return
+        print(f"Uczeń o nazwie {student_name} nie został znaleziony.")
+
+
+def main():
+    my_class = Class()
+
+    # Dodawanie uczniów
+    student1 = Student("Jan Kowalski")
+    student2 = Student("Anna Nowak")
+    my_class.add_student(student1)
+    my_class.add_student(student2)
+
+    # Dodawanie ocen
+    my_class.add_grade_for_student("Jan Kowalski", 4.5)
+    my_class.add_grade_for_student("Jan Kowalski", 3.5)
+    my_class.add_grade_for_student("Anna Nowak", 5.0)
+    my_class.add_grade_for_student("Anna Nowak", 4.0)
+
+    # Obliczanie średnich ocen
+    my_class.calculate_average_grade_for_student("Jan Kowalski")
+    my_class.calculate_average_grade_for_student("Anna Nowak")
+
+
+if __name__ == "__main__":
+    main()
+def calculate_average_grade(grades):
+    if not grades:
+        return 0
+    return sum(grades) / len(grades)
+
+def main():
+    subjects = ['matematyka', 'fizyka', 'chemia']
+    grades = {}
+
+    for subject in subjects:
+        grade_input = input(f"Podaj ocenę z {subject}: ")
+        try:
+            grade = float(grade_input)
+            if 0 <= grade <= 6:
+                grades[subject] = grade
+            else:
+                print("Ocena musi być liczbą z zakresu od 0 do 6.")
+        except ValueError:
+            print("Wprowadzono niepoprawną ocenę.")
+
+    average_grade = calculate_average_grade(grades.values())
+    print(f"Średnia ocena z przedmiotów: {average_grade}")
+
+
+if __name__ == "__main__":
+    main()
+def calculate_average_grade(grades):
+    if not grades:
+        return 0
+    return sum(grades) / len(grades)
+
+def main():
+    subjects = ['matematyka', 'fizyka', 'chemia']
+    grades = {subject: [] for subject in subjects}
+
+    while True:
+        print("Wybierz przedmiot, do którego chcesz dodać ocenę:")
+        for i, subject in enumerate(subjects, start=1):
+            print(f"{i}. {subject}")
+        print("0. Zakończ dodawanie ocen")
+
+        try:
+            choice = int(input("Twój wybór: "))
+            if choice == 0:
+                break
+            elif choice in range(1, len(subjects) + 1):
+                subject = subjects[choice - 1]
+                grade_input = input(f"Podaj ocenę z {subject} (lub 'q' aby zakończyć): ")
+                if grade_input.lower() == 'q':
+                    continue
+                try:
+                    grade = float(grade_input)
+                    if 0 <= grade <= 6:
+                        grades[subject].append(grade)
+                    else:
+                        print("Ocena musi być liczbą z zakresu od 0 do 6.")
+                except ValueError:
+                    print("Wprowadzono niepoprawną ocenę.")
+            else:
+                print("Niepoprawny wybór. Wybierz numer od 0 do", len(subjects))
+        except ValueError:
+            print("Wprowadzono niepoprawny numer.")
+
+    for subject, subject_grades in grades.items():
+        average_grade = calculate_average_grade(subject_grades)
+        print(f"Średnia ocena z {subject}: {average_grade}")
+
+    all_grades = [grade for subject_grades in grades.values() for grade in subject_grades]
+    overall_average_grade = calculate_average_grade(all_grades)
+    print(f"Średnia ocena ogólna: {overall_average_grade}")
+
+if __name__ == "__main__":
+    main()
+def calculate_average_grade(grades):
+    if not grades:
+        return 0
+    return sum(grades) / len(grades)
+
+def main():
+    subjects = ['matematyka', 'fizyka', 'chemia']
+    grades = {subject: [] for subject in subjects}
+
+    while True:
+        print("Wybierz przedmiot, do którego chcesz dodać ocenę:")
+        for i, subject in enumerate(subjects, start=1):
+            print(f"{i}. {subject}")
+        print("0. Zakończ dodawanie ocen")
+
+        try:
+            choice = int(input("Twój wybór: "))
+            if choice == 0:
+                break
+            elif choice in range(1, len(subjects) + 1):
+                subject = subjects[choice - 1]
+                grade_input = input(f"Podaj ocenę z {subject} (lub 'q' aby zakończyć): ")
+                if grade_input.lower() == 'q':
+                    continue
+                try:
+                    grade = float(grade_input)
+                    if 0 <= grade <= 6:
+                        grades[subject].append(grade)
+                    else:
+                        print("Ocena musi być liczbą z zakresu od 0 do 6.")
+                except ValueError:
+                    print("Wprowadzono niepoprawną ocenę.")
+            else:
+                print("Niepoprawny wybór. Wybierz numer od 0 do", len(subjects))
+        except ValueError:
+            print("Wprowadzono niepoprawny numer.")
+
+    for subject, subject_grades in grades.items():
+        average_grade = calculate_average_grade(subject_grades)
+        print(f"Średnia ocena z {subject}: {average_grade}")
+
+    all_grades = [grade for subject_grades in grades.values() for grade in subject_grades]
+    overall_average_grade = calculate_average_grade(all_grades)
+    print(f"Średnia ocena ogólna: {overall_average_grade}")
+
+    print("\nWszystkie oceny:")
+    for subject, subject_grades in grades.items():
+        print(f"Oceny z {subject}: {subject_grades}")
+        print(f"Suma ocen z {subject}: {sum(subject_grades)}")
+
+    print(f"Wszystkie oceny: {all_grades}")
+    print(f"Suma ocen: {sum(all_grades)}")
+    print(f"Liczba wszystkich ocen: {len(all_grades)}")
+    print(f"Średnia wszystkich ocen: {overall_average_grade}")
+
+
+if __name__ == "__main__":
+    main()
